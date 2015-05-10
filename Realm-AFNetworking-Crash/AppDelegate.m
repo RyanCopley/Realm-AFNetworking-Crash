@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "Foo.h"
+#import <Realm/Realm.h>
 
 @interface AppDelegate ()
 
@@ -16,7 +18,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    //Setup
+    [[RLMRealm defaultRealm] beginWriteTransaction];
+    Foo* foo = [Foo new];
+    foo.bar = @"baz";
+    [Foo createInDefaultRealmWithValue:foo];
+    [[RLMRealm defaultRealm] commitWriteTransaction];
+    
+
+    for (Foo* foo2 in [Foo allObjects]) {
+        [foo2 auth];
+    }
+    
+    
     return YES;
 }
 

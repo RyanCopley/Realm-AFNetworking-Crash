@@ -1,0 +1,20 @@
+//
+//  SomeModel.h
+//  Realm-AFNetworking-Crash
+//
+//  Created by Ryan Copley on 5/9/15.
+//  Copyright (c) 2015 Ryan Copley. All rights reserved.
+//
+
+#import <Realm/Realm.h>
+
+@interface Foo : RLMObject
+@property (nonatomic, strong) NSString* bar;
+
+-(void)auth;
+
+@end
+
+// This protocol enables typed collections. i.e.:
+// RLMArray<SomeModel>
+RLM_ARRAY_TYPE(SomeModel)
